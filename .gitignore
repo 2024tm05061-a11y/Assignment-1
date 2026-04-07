@@ -1,0 +1,10 @@
+# Virtual environment
+bootcamp/
+
+# Environment variable files
+.env
+*.env
+
+# Requirements file
+Requirement.txt
+
