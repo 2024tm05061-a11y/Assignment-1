@@ -1,1 +1,27 @@
-# Assignment-1
+Problem Statement
+
+1. Domain Identification
+This project is situated in the domain of Manufacturing and Welding Engineering, with a specific focus on stud welding equipment operation, safety, and compliance documentation. Stud welding is a critical joining process widely used across industries such as construction, automotive manufacturing, shipbuilding, and heavy fabrication. Professionals involved in this domain include welding operators, maintenance engineers, production supervisors, safety officers, and quality auditors. Their daily work depends on strict adherence to operating instructions and safety guidelines provided by equipment manufacturers to ensure safe operation, regulatory compliance, and consistent weld quality.
+
+2. Problem Description
+Stud welding equipment is supplied with detailed operating manuals that contain essential information related to device handling, operating procedures, safety precautions, accident prevention measures, and regulatory compliance requirements. These manuals are typically provided as multimodal PDF documents consisting of extensive technical text, structured tables (such as operating parameters, warnings, and step‑by‑step procedures), and visual elements including wiring diagrams, grounding layouts, welding gun assemblies, and safety symbols.
+In practical industrial settings, users often struggle to extract specific information from these documents quickly and accurately. For example, an operator may need to confirm mandatory safety instructions before operation, understand the correct grounding configuration shown in a diagram, or interpret warning symbols related to electrical hazards. Traditional keyword‑based search within PDFs is insufficient because relevant information may be distributed across multiple sections, embedded inside tables, or expressed visually rather than as plain text. Under time pressure on the shop floor, this makes manual searching inefficient and error‑prone.
+This problem is particularly pronounced for new operators and trainees who are not yet familiar with the document structure or technical terminology. Safety auditors and compliance personnel also face difficulties when they need to locate specific clauses during inspections. As a result, critical instructions may be overlooked, increasing the risk of equipment misuse, safety incidents, and regulatory non‑compliance.
+
+3. Why This Problem Is Unique
+This problem goes beyond a generic document question‑answering task due to several domain‑specific challenges. Stud welding manuals contain highly specialised engineering terminology that is not commonly used outside welding and fabrication contexts. Additionally, essential information is often presented in structured tables where the semantic meaning depends on row‑column relationships rather than linear text.
+A further challenge lies in the interpretation of engineering diagrams and safety symbols, which convey crucial information visually. Understanding these images requires contextual explanation rather than simple image storage. Generic Q&A systems that focus only on text extraction fail to capture the meaning of such visual content. Moreover, the stud welding domain is safety‑critical, meaning that inaccurate or hallucinated answers can have serious operational and safety consequences. This makes explainability and grounding of responses an essential requirement rather than a nice‑to‑have feature.
+
+4. Why RAG Is the Right Approach
+A Retrieval‑Augmented Generation (RAG) approach is particularly well suited to address these challenges. Unlike standalone language models or fine‑tuned models, a RAG system retrieves relevant content directly from the actual stud welding manuals before generating responses. This ensures that answers are grounded in official documentation, reducing the risk of incorrect or fabricated information.
+By embedding extracted text, tables, and image‑derived summaries into a vector database, the system can perform semantic retrieval across multiple modalities. This approach outperforms keyword‑based search by understanding the intent of the query rather than relying on exact word matches. Manual search is slow and inconsistent, while fine‑tuning requires large datasets and still does not guarantee reliance on the correct document version. RAG combines accurate retrieval with flexible natural language generation, making it an effective and safe solution for this domain.
+
+5. Expected Outcomes
+A successful implementation of this Multimodal RAG system will allow users to interact with stud welding operating manuals using natural language queries and receive concise, accurate, and explainable answers, along with clear references to the source document, page number, and content type. The system should support queries such as:
+
+“What safety precautions must be followed before operating the stud welding device?”
+“Which handling instructions are mandatory to prevent electrical hazards?”
+“What does the warning symbol shown in the grounding diagram represent?”
+“Which operating steps must be completed before switching on the equipment?”
+
+By enabling faster access to critical operating and safety information, the system will support safer decision‑making on the shop floor, improve operator training and onboarding, reduce the likelihood of accidents, and simplify safety audits and compliance checks. Ultimately, the system transforms complex, static stud welding manuals into an accessible and intelligent knowledge resource aligned with real industrial needs.
