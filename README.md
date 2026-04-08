@@ -31,3 +31,9 @@ The system ingests PDF documents and extracts text, tables, and images as
 separate chunk types. Text and images are extracted using PyMuPDF, while
 tables are extracted using the Unstructured library. All chunks include
 metadata such as page number and source document.
+
+Image Handling:
+Images extracted from PDFs are processed using a Vision Language Model
+(BLIP) to generate textual summaries. These summaries are treated as
+document chunks and embedded into the vector store. Raw images are not
+stored or indexed directly.
