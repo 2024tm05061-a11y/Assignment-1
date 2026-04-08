@@ -1,0 +1,35 @@
+# Core API framework
+fastapi
+uvicorn
+
+# Environment variables
+python-dotenv
+
+# PDF parsing (text, tables, images)
+pymupdf
+unstructured
+unstructured[pdf]
+
+# Image processing
+pillow
+
+# Embeddings & RAG framework
+langchain
+langchain-community
+
+# Vector database
+faiss-cpu
+
+# LLM / Embedding models
+sentence-transformers
+
+# Vision-Language Model support
+transformers
+torch
+
+# Data validation (FastAPI uses this)
+pydantic
+
+# Utilities
+tqdm
+numpy
