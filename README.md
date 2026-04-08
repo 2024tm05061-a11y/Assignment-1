@@ -25,3 +25,9 @@ A successful implementation of this Multimodal RAG system will allow users to in
 “Which operating steps must be completed before switching on the equipment?”
 
 By enabling faster access to critical operating and safety information, the system will support safer decision‑making on the shop floor, improve operator training and onboarding, reduce the likelihood of accidents, and simplify safety audits and compliance checks. Ultimately, the system transforms complex, static stud welding manuals into an accessible and intelligent knowledge resource aligned with real industrial needs.
+
+Architecture Overview-
+The system ingests PDF documents and extracts text, tables, and images as
+separate chunk types. Text and images are extracted using PyMuPDF, while
+tables are extracted using the Unstructured library. All chunks include
+metadata such as page number and source document.
