@@ -37,3 +37,36 @@ Images extracted from PDFs are processed using a Vision Language Model
 (BLIP) to generate textual summaries. These summaries are treated as
 document chunks and embedded into the vector store. Raw images are not
 stored or indexed directly.
+
+RAG Chain section--
+The RAG pipeline retrieves relevant text, table, and image-summary chunks
+from a FAISS vector store. A custom prompt template enforces grounded
+generation by restricting answers to retrieved context only. The LLM
+returns responses along with source references for traceability.
+
+### RAG Pipeline
+
+The system implements a Retrieval‑Augmented Generation (RAG) pipeline.
+Text, table, and image‑summary chunks are embedded into a FAISS vector store.
+During query time, relevant chunks are retrieved and passed to a language
+model using a custom prompt that enforces grounded answers based strictly
+on retrieved document context.
+
+Technology Choice or Implementation note--
+The RAG pipeline is implemented using the latest LangChain modular
+architecture (`langchain`, `langchain-community`). Retrieval is handled
+via FAISS, and a custom prompt enforces grounded answer generation using
+only retrieved document content.
+
+### RAG Chain
+
+A manual Retrieval‑Augmented Generation (RAG) pipeline is implemented using
+FAISS for retrieval and a custom prompt template defined via `langchain-core`.
+Answers are strictly grounded in retrieved document context, and image
+content is incorporated through VLM‑generated summaries.
+
+### API Design
+
+The FastAPI server initializes without loading documents. PDFs are ingested
+dynamically via the /ingest endpoint, after which the RAG pipeline is built.
+This approach ensures robustness and mirrors production-grade API behavior.

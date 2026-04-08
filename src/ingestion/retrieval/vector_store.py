@@ -1,38 +1,15 @@
-import os
-import json
-from sentence_transformers import SentenceTransformer
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.schema import Document
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_core.documents import Document
+
+from src.ingestion.chunk_manager import get_all_chunks
 
 
-CHUNK_DIR = "data/chunks"
-VECTOR_DB_DIR = "data/vector_store"
-
-
-def load_latest_chunks():
+def build_vector_store():
     """
-    Load the most recent chunk JSON file
+    Embed all chunks and build FAISS vector store
     """
-    files = sorted(
-        [f for f in os.listdir(CHUNK_DIR) if f.endswith(".json")],
-        reverse=True
-    )
-
-    if not files:
-        raise FileNotFoundError("No chunk files found")
-
-    latest_file = os.path.join(CHUNK_DIR, files[0])
-
-    with open(latest_file, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def build_faiss_index():
-    """
-    Create FAISS vector store from chunks
-    """
-    chunks = load_latest_chunks()
+    chunks = get_all_chunks()
 
     documents = [
         Document(
@@ -40,7 +17,7 @@ def build_faiss_index():
             metadata={
                 "type": chunk["type"],
                 "page": chunk["page"],
-                "source": chunk["source"],
+                "source": chunk["source"]
             }
         )
         for chunk in chunks
@@ -50,11 +27,6 @@ def build_faiss_index():
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
-    vectorstore = FAISS.from_documents(documents, embeddings)
+    vector_store = FAISS.from_documents(documents, embeddings)
 
-    os.makedirs(VECTOR_DB_DIR, exist_ok=True)
-    vectorstore.save_local(VECTOR_DB_DIR)
-
-    print("✅ FAISS vector store created and saved")
-
-    return vectorstore
+    return vector_store

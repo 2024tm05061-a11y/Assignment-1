@@ -8,3 +8,5 @@ bootcamp/
 # Requirements file
 Requirement.txt
 
+__pycache__/
+*.pyc
